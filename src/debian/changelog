@@ -1,0 +1,193 @@
+hone (14.03-google24) unstable; urgency=medium
+
+  * Change workqueue to use single thread.
+  * Move add_sock_close_agg_event into work queue.
+  * Iterate through hashtable to remove old aggregation objects.
+
+ -- Binbin Peng <binp@google.com>  Tue, 03 Nov 2015 13:27:25 -0800
+
+hone (14.03-google23) unstable; urgency=medium
+
+  * Aggregate netflow info in the kernel.
+  * Update sock/connection ID type from uint32_t to uint64_t.
+
+ -- Binbin Peng <binp@google.com>  Fri, 23 Oct 2015 12:29:45 -0700
+
+hone (14.03-google22) unstable; urgency=medium
+
+  * Change the option length type from uint32_t to uint16_t.
+  * Re-calculate all the sizes for each pcap format to protect kernel memory.
+  * Copy only the first 4k data when argument/cwd/executable is too long.
+
+ -- binp <binp@google.com>  Wed, 16 Sep 2015 10:12:52 -0700
+
+hone (14.03-google21) unstable; urgency=medium
+
+  * Check the return value of skb_header_pointer for IPv6.
+
+ -- Bin Peng <binp@google.com>  Wed, 05 Aug 2015 18:58:53 -0700
+
+hone (14.03-google20) unstable; urgency=medium
+
+  * Fix the issue when multiple readers connect to driver.
+
+ -- Bin Peng <binp@google.com>  Thu, 07 May 2015 11:29:47 -0700
+
+hone (14.03-google19) unstable; urgency=medium
+
+  * Fix device minor number calculation.
+  * Fix path_get/path_put error.
+
+ -- Peter Moody <pmoody@google.com>  Wed, 27 Mar 2015 13:11:31 -0700
+
+hone (14.03-google18) unstable; urgency=medium
+
+  * Include CWD with executables.
+
+ -- Peter Moody <pmoody@google.com>  Wed, 25 Mar 2015 13:11:31 -0700
+
+hone (14.03-google17) unstable; urgency=medium
+
+  * Include return code with exit calls.
+
+ -- Peter Moody <pmoody@google.com>  Fri, 30 Jan 2015 10:05:04 -0800
+
+hone (14.03-google16) unstable; urgency=low
+
+  * New snapshot release.
+
+ -- pmoody <pmoody@perdido.sfo.corp.google.com>  Thu, 29 Jan 2015 12:01:53 -0800
+
+hone (14.03-google13) unstable; urgency=low
+
+  * Protect the hashtable writers with a spinlock.
+
+ -- pmoody <pmoody@perdido.sfo.corp.google.com>  Tue, 14 Oct 2014 16:32:48 -0700
+
+hone (14.03-google12) unstable; urgency=low
+
+  * New snapshot release.
+
+ -- pmoody <pmoody@perdido.sfo.corp.google.com>  Thu, 09 Oct 2014 09:09:13 -0700
+
+hone (14.03-google12) all; urgency=medium
+
+  * Use hashtable for whitelist.
+
+ -- Peter Moody <pmoody@google.com>  Thu, 09 Oct 2014 09:07:55 -0700
+
+hone (14.03-google11) all; urgency=medium
+
+  * Don't process traffic sent to non-listening ports.
+
+ -- Peter Moody <pmoody@google.com>  Wed, 01 Oct 2014 15:53:30 -0700
+
+hone (14.03-google10) trusty; urgency=medium
+
+  * Implement whitelist as rbtree rather than linked list.
+
+ -- Peter Moody <pmoody@google.com>  Tue, 30 Sep 2014 10:14:00 -0700
+
+hone (14.03-google9) trusty; urgency=medium
+
+  * New whitelisting ioctl and verify pid/socket mapping.
+
+ -- Peter Moody <pmoody@google.com>  Thu, 28 Aug 2014 14:52:15 -0700
+
+hone (14.03-google8) precise; urgency=medium
+
+  * Check the return value of skb_header_pointer
+
+ -- Peter Moody <pmoody@google.com>  Fri, 08 Aug 2014 11:53:07 -0700
+
+hone (14.03-google7) precise; urgency=medium
+
+  * Replace the use of most of the unexported hooks.
+
+ -- Peter Moody <pmoody@google.com>  Fri, 25 Jul 2014 14:28:13 -0700
+
+hone (14.03-google6) precise; urgency=low
+
+  * Do not BUG on the socket teardown function not being inet_sock_destruct.
+
+ -- Peter Moody <pmoody@google.com>  Fri, 27 Jun 2014 17:35:41 -0700
+
+hone (14.03-google5) unstable; urgency=low
+
+  * Fix sleeping in kretprobe.
+
+ -- pmoody <pmoody@perdido.sfo.corp.google.com>  Thu, 05 Jun 2014 08:54:47 -0700
+
+hone (14.03-google4) precise; urgency=low
+
+  * Fix scoping issue with SKIPHDR macro.
+
+ -- Peter Moody <pmoody@google.com>  Wed, 14 May 2014 10:02:04 -0700
+
+hone (14.03-google1) unstable; urgency=low
+
+  * New snapshot release.
+
+ -- pmoody <pmoody@perdido.sfo.corp.google.com>  Tue, 01 Apr 2014 15:12:21 -0700
+
+hone (14.03) unstable; urgency=low
+
+  * New snapshot release.
+
+ -- Brandon Carpenter <brandon.carpenter@pnnl.gov>  Wed, 05 Mar 2014 11:32:01 -0800
+
+hone (13.12.19) unstable; urgency=low
+
+  * Bug fix release.
+
+ -- Brandon Carpenter <brandon.carpenter@pnnl.gov>  Thu, 19 Dec 2013 09:41:55 -0800
+
+hone (13.12) unstable; urgency=low
+
+  * Bug fix release.
+
+ -- Brandon Carpenter <brandon.carpenter@pnnl.gov>  Tue, 17 Dec 2013 09:11:27 -0800
+
+hone (13.09) unstable; urgency=low
+
+  * New snapshot release.
+
+ -- brandon <brandon.carpenter@pnnl.gov>  Fri, 20 Sep 2013 10:01:58 -0700
+
+hone (13.08) unstable; urgency=low
+
+  * New snapshot release.
+
+ -- brandon <brandon.carpenter@pnnl.gov>  Tue, 30 Jul 2013 11:48:41 -0700
+
+hone (13.06.24) unstable; urgency=low
+
+  * New snapshot release.
+
+ -- Brandon Carpenter <brandon.carpenter@pnnl.gov>  Mon, 24 Jun 2013 12:16:04 -0700
+
+hone (13.06) unstable; urgency=low
+
+  * New snapshot release.
+
+ -- Brandon Carpenter <brandon.carpenter@pnnl.gov>  Mon, 17 Jun 2013 10:54:15 -0700
+
+hone (13.04) unstable; urgency=low
+
+  * New snapshot release.
+
+ -- Brandon Carpenter <brandon.carpenter@pnnl.gov>  Tue, 16 Apr 2013 09:24:34 -0700
+
+hone (13.02) unstable; urgency=low
+
+  * New snapshot release.
+
+ -- Brandon Carpenter <brandon.carpenter@pnnl.gov>  Fri, 15 Feb 2013 10:44:18 -0800
+
+hone (0.3) unstable; urgency=low
+
+  * Initial release.
+
+ -- Brandon Carpenter <brandon.carpenter@pnnl.gov>  Thu, 29 Dec 2011 13:23:07 -0800
+
+
