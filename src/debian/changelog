@@ -19,19 +19,19 @@ hone (14.03-google22) unstable; urgency=medium
   * Re-calculate all the sizes for each pcap format to protect kernel memory.
   * Copy only the first 4k data when argument/cwd/executable is too long.
 
- -- binp <binp@google.com>  Wed, 16 Sep 2015 10:12:52 -0700
+ -- Binbin Peng <binp@google.com>  Wed, 16 Sep 2015 10:12:52 -0700
 
 hone (14.03-google21) unstable; urgency=medium
 
   * Check the return value of skb_header_pointer for IPv6.
 
- -- Bin Peng <binp@google.com>  Wed, 05 Aug 2015 18:58:53 -0700
+ -- Binbin Peng <binp@google.com>  Wed, 05 Aug 2015 18:58:53 -0700
 
 hone (14.03-google20) unstable; urgency=medium
 
   * Fix the issue when multiple readers connect to driver.
 
- -- Bin Peng <binp@google.com>  Thu, 07 May 2015 11:29:47 -0700
+ -- Binbin Peng <binp@google.com>  Thu, 07 May 2015 11:29:47 -0700
 
 hone (14.03-google19) unstable; urgency=medium
 
@@ -56,19 +56,19 @@ hone (14.03-google16) unstable; urgency=low
 
   * New snapshot release.
 
- -- pmoody <pmoody@perdido.sfo.corp.google.com>  Thu, 29 Jan 2015 12:01:53 -0800
+ -- Peter Moody <pmoody@.google.com>  Thu, 29 Jan 2015 12:01:53 -0800
 
 hone (14.03-google13) unstable; urgency=low
 
   * Protect the hashtable writers with a spinlock.
 
- -- pmoody <pmoody@perdido.sfo.corp.google.com>  Tue, 14 Oct 2014 16:32:48 -0700
+ -- Peter Moody <pmoody@google.com>  Tue, 14 Oct 2014 16:32:48 -0700
 
 hone (14.03-google12) unstable; urgency=low
 
   * New snapshot release.
 
- -- pmoody <pmoody@perdido.sfo.corp.google.com>  Thu, 09 Oct 2014 09:09:13 -0700
+ -- Peter Moody <pmoody@google.com>  Thu, 09 Oct 2014 09:09:13 -0700
 
 hone (14.03-google12) all; urgency=medium
 
@@ -116,7 +116,7 @@ hone (14.03-google5) unstable; urgency=low
 
   * Fix sleeping in kretprobe.
 
- -- pmoody <pmoody@perdido.sfo.corp.google.com>  Thu, 05 Jun 2014 08:54:47 -0700
+ -- Peter Moody <pmoody@google.com>  Thu, 05 Jun 2014 08:54:47 -0700
 
 hone (14.03-google4) precise; urgency=low
 
@@ -128,7 +128,7 @@ hone (14.03-google1) unstable; urgency=low
 
   * New snapshot release.
 
- -- pmoody <pmoody@perdido.sfo.corp.google.com>  Tue, 01 Apr 2014 15:12:21 -0700
+ -- Peter Moody <pmoody@google.com>  Tue, 01 Apr 2014 15:12:21 -0700
 
 hone (14.03) unstable; urgency=low
 

@@ -102,8 +102,8 @@ The meaning of the fields is:
   * Timestamp (High) and Timestamp (Low): high and low 32-bits of a 64-bit
     quantity representing the timestamp, as described in section 3.3 [1]
     (Enhanced Packet Block).
-  * Options: optionally, a list of options (formatted according to the rules
-    defined in section 2.5 [1] (Options)) can be present.
+  * Options: a list of options (formatted according to the rules defined in
+    section 2.5 [1] (Options)) may be present.
 
 In addition to the options defined in section 2.5 [1] (Options), the following
 options are valid within this block:
@@ -188,8 +188,8 @@ The meaning of the fields is:
   * Process ID: the process ID (PID) of the process.  Timestamp (High) and
   * Timestamp (Low): high and low 32-bits of a 64-bit quantity representing the
     timestamp, as described in section 3.3 [1] (Enhanced Packet Block).
-  * Options: optionally, a list of options (formatted according to the rules
-    defined in section 2.5 [1] (Options)) can be present.
+  * Options: a list of options (formatted according to the rules defined in
+    section 2.5 [1] (Options)) may be present.
 
 In addition to the options defined in section 2.5 [1] (Options), the following
 options are valid within this block:
@@ -297,10 +297,10 @@ The meaning of the fields is:
     use IPv4-Mapped Embedded IPv6 to keep the address.
   * Packets in: the number of received packets.
   * Packets out: the number of sent packets.
-  * Bytes in: the size of received packets.
-  * Bytes out: the size of sent packets.
-  * Options: optionally, a list of options (formatted according to the rules
-    defined in section 2.5 [1] (Options)) can be present.
+  * Bytes in: the cumulative size of received packets.
+  * Bytes out: the cumulative size of sent packets.
+  * Options: a list of options (formatted according to the rules defined in
+    section 2.5 [1] (Options)) may be present.
 
 
 7. References
