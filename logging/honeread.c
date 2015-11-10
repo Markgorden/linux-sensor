@@ -2,6 +2,7 @@
  * honeread - Example reader for hone character device
  *
  * Copyright (C) 2011 Battelle Memorial Institute
+ * Copyright (C) 2015 Google Inc.
  *
  * Licensed under the GNU General Public License Version 2.
  * See ../src/LICENSE for the full text of the license.
