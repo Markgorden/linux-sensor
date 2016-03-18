@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2011 Battelle Memorial Institute
- * Copyright (C) 2015 Google Inc.
+ * Copyright (C) 2016 Google Inc.
  *
  * Licensed under the GNU General Public License Version 2.
  * See LICENSE for the full text of the license.
@@ -519,8 +519,8 @@ static void add_sock_close_agg_event(struct hone_reader *reader,
 	work->reader = reader;
 
 	INIT_WORK((struct work_struct*)work, delay_add_sock_close_agg_event);
-	BUG_ON(unlikely(!queue_work(hone_wq, (struct work_struct*) work)));
 	inc_pending_work(reader);
+	BUG_ON(unlikely(!queue_work(hone_wq, (struct work_struct*) work)));
 }
 
 /* Return true if this event should be sent to userspace. */
@@ -654,8 +654,10 @@ static struct hone_event *__add_files(struct hone_reader *reader,
 			sk = sock->sk;
 			if (!sk || (sk->sk_family != PF_INET && sk->sk_family != PF_INET6))
 				continue;
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,2,0)
 			sk->sk_protinfo = (void*)(unsigned long)
 					(task->pid == task->tgid ? task->pid : task->tgid);
+#endif
 			if ((sk_event = __alloc_socket_event((unsigned long) sk,
 							     0, task, GFP_ATOMIC))) {
 				sk_event->next = event;

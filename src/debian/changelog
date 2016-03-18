@@ -1,3 +1,16 @@
+hone (14.03-google26) unstable; urgency=medium
+
+  * Support kernel 4.2.
+
+ -- Binbin Peng <binp@google.com>  Wed, 02 Mar 2016 15:36:05 -0800
+
+hone (14.03-google25) unstable; urgency=medium
+
+  * Fix a lock up issue: reader->info.pending_work is 0 when
+    dec_pending_work() is called.
+
+ -- Binbin Peng <binp@google.com>  Mon, 23 Nov 2015 14:06:39 -0800
+
 hone (14.03-google24) unstable; urgency=medium
 
   * Change workqueue to use single thread.
@@ -56,7 +69,7 @@ hone (14.03-google16) unstable; urgency=low
 
   * New snapshot release.
 
- -- Peter Moody <pmoody@.google.com>  Thu, 29 Jan 2015 12:01:53 -0800
+ -- Peter Moody <pmoody@google.com>  Thu, 29 Jan 2015 12:01:53 -0800
 
 hone (14.03-google13) unstable; urgency=low
 

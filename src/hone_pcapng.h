@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Google Inc
+ * Copyright (C) 2016 Google Inc
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,5 @@
 #define HONE_PROCESS_BLOCK     0x101
 #define HONE_CONNECTION_BLOCK  0x102
 #define HONE_SECTION_HDR_BLOCK 0x0A0D0D0A
-
-// TODO(binp): Define macros for all hard-coded integers.
 
 #endif /* _HONE_PCAPNG_H */

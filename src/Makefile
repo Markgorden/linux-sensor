@@ -189,7 +189,6 @@ dkms.conf: VERSION
 	@echo 'PACKAGE_VERSION="$(or $(DKMSVER),$(BASEVER))"' > $@
 	@echo 'PACKAGE_NAME="$(or $(DKMSNAME),hone)"' >>  $@
 	@echo 'AUTOINSTALL="yes"' >> $@
-	@echo 'BUILD_EXCLUSIVE_KERNEL="^2.6.3[0-9]|3.*"' >> $@
 	@i=0; for m in $(HONE_MODULES); do \
 		echo "" >> $@; \
 		echo "BUILT_MODULE_NAME[$$i]=\"$$m\"" >> $@; \

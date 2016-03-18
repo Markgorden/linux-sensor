@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2011 Battelle Memorial Institute
- * Copyright (C) 2015 Google Inc.
+ * Copyright (C) 2016 Google Inc.
  *
  * Licensed under the GNU General Public License Version 2.
  * See LICENSE for the full text of the license.
@@ -61,14 +61,16 @@ static inline void _finish_hook(struct sock *sk)
 {
 	if (notifier_call_chain_empty())
 		return;
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,2,0)
 	BUG_ON(unlikely(sk->sk_protinfo));
 	sk->sk_protinfo = (void *) (unsigned long)
 			(current->pid == current->tgid ? current->pid : current->tgid);
+#endif
 	sock_notifier_notify(0, sk);
 }
 
 static int sock_sendmsg_handler(struct kprobe *p, struct pt_regs *regs) {
-#ifdef CONFIG_X86_64
+#if defined(CONFIG_X86_64) && LINUX_VERSION_CODE < KERNEL_VERSION(4,2,0)
 	struct socket *sock = (struct socket*)regs->di;
 
 	if (unlikely(!sock) || unlikely(!sock->sk))
@@ -89,7 +91,7 @@ out:
 }
 
 static int sock_recvmsg_handler(struct kprobe *p, struct pt_regs *regs) {
-#ifdef CONFIG_X86_64
+#if defined(CONFIG_X86_64) && LINUX_VERSION_CODE < KERNEL_VERSION(4,2,0)
 	struct socket *sock = (struct socket*)regs->di;
 
 	if (unlikely(!sock) || unlikely(!sock->sk))

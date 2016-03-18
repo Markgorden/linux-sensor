@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2011 Battelle Memorial Institute
- * Copyright (C) 2015 Google Inc.
+ * Copyright (C) 2016 Google Inc.
  *
  * Licensed under the GNU General Public License Version 2.
  * See LICENSE for the full text of the license.
@@ -49,7 +49,11 @@ static int packet_rcv_handler(struct sock *sk, struct sk_buff *skb)
 	if (!sk)
 		goto out;
 	pargs.sock = (unsigned long) sk;
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,2,0)
 	pargs.pid = (unsigned long) sk->sk_protinfo;
+#else
+	pargs.pid = 0;
+#endif
 	pargs.skb = skb;
 	packet_notifier_notify(PKTNOT_PACKET_IN, &pargs);
 out:
@@ -70,18 +74,41 @@ typedef const struct nf_hook_ops * nf_hook_type;
 typedef unsigned int nf_hook_type;
 #endif
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,1,0)
 static unsigned int nf_hook_v4_in(nf_hook_type hook, struct sk_buff *skb,
 		const struct net_device *indev, const struct net_device *outdev,
 		int (*okfn)(struct sk_buff *))
 {
 	struct sock *sk = lookup_v4_sock(skb, indev);
 	struct packet_args pargs;
+#else
+static unsigned int nf_hook_v4_in(nf_hook_type hook, struct sk_buff *skb,
+		const struct nf_hook_state *state)
+{
+	struct packet_args pargs;
+	struct sock *sk = NULL;
+	if (!state)
+		goto out;
+	if (state->sk) {
+		sk = state->sk;
+	} else {
+		if (state->in) {
+			sk = lookup_v4_sock(skb, state->in);
+		} else {
+			goto out;
+		}
+	}
+#endif
 
 	if (!sk)
 		goto out;
 
 	pargs.sock = (unsigned long) sk;
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,2,0)
 	pargs.pid = (unsigned long) sk->sk_protinfo;
+#else
+	pargs.pid = 0;
+#endif
 	pargs.skb = skb;
 
 	put_sock(sk);
@@ -91,18 +118,40 @@ out:
 }
 
 #if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,1,0)
 static unsigned int nf_hook_v6_in(nf_hook_type hook, struct sk_buff *skb,
 		const struct net_device *indev, const struct net_device *outdev,
 		int (*okfn)(struct sk_buff *))
 {
 	struct sock *sk = lookup_v6_sock(skb, indev);
 	struct packet_args pargs;
-
+#else
+static unsigned int nf_hook_v6_in(nf_hook_type hook, struct sk_buff *skb,
+		const struct nf_hook_state *state)
+{
+	struct packet_args pargs;
+	struct sock *sk = NULL;
+	if (!state)
+		goto out;
+	if (state->sk) {
+		sk = state->sk;
+	} else {
+		if (state->in) {
+			sk = lookup_v6_sock(skb, state->in);
+		} else {
+			goto out;
+		}
+	}
+#endif
 	if (!sk)
 		goto out;
 
 	pargs.sock = (unsigned long) sk;
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,2,0)
 	pargs.pid = (unsigned long) sk->sk_protinfo;
+#else
+	pargs.pid = 0;
+#endif
 	pargs.skb = skb;
 
 	put_sock(sk);
@@ -112,10 +161,15 @@ out:
 }
 #endif
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,1,0)
 static unsigned int nf_hook_out(nf_hook_type hook, struct sk_buff *skb,
 				const struct net_device *indev,
 				const struct net_device *outdev,
 				int (*okfn)(struct sk_buff *))
+#else
+static unsigned int nf_hook_out(nf_hook_type hook, struct sk_buff *skb,
+				const struct nf_hook_state *state)
+#endif
 {
 	struct packet_args pargs;
 
@@ -123,7 +177,11 @@ static unsigned int nf_hook_out(nf_hook_type hook, struct sk_buff *skb,
 	if (skb->sk) {
 		sock_hold(skb->sk);
 		pargs.sock = (unsigned long) skb->sk;
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,2,0)
 		pargs.pid = (unsigned long) skb->sk->sk_protinfo;
+#else
+		pargs.pid = 0;
+#endif
 		sock_put(skb->sk);
 	} else {
 		pargs.sock = 0;
